@@ -88,5 +88,35 @@ namespace PRS.Controllers
                 return BadRequest(ex.ToString());
             }
         }
+        [HttpPost("reject")]
+        [AllowAnonymous]
+        public async Task<IActionResult> RejectPersonManager(PersonCreatonDTO creatonDTO)
+        {
+            try
+            {
+                if (creatonDTO.PersonId == 0)
+                {
+                    return BadRequest();
+                }
+                var User = connector.PersonManager.Find(creatonDTO.PersonId);
+                if (User == null)
+                {
+                    return NotFound();
+                }
+             
+
+                User.Approved = true;
+                User.ApprovalStatus = ApprovalStatus.Rejected;
+                connector.PersonManager.Update(User);
+
+                await connector.SaveChangesAsync();
+
+                return Ok(User);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
     }
 }

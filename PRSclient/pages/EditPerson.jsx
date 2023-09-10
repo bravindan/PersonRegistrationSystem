@@ -38,11 +38,12 @@ const resetForm = () => {
   //get data from db
   useEffect(()=>{
     const getData = async () => {
+      console.log(id)
         try {
           const response = await axios.get(`https://localhost:7057/api/PersonManager/people/${id}`);
-          const person = response.data; 
-          setPersonData(person);
-          console.log(person)
+          // const person = response.data; 
+          setPersonData(response.data);
+          console.log(personData)
         } catch (error) {
           console.error('Error fetching data:', error.message);
         }
@@ -76,19 +77,19 @@ const resetForm = () => {
   return (
     <div className="container mx-auto p-4 flex justify-center items-center">
      
-      <form onSubmit={handleSubmit} className="w-full max-w-lg">
-      <div>
-        <h1 className="text-2xl font-semibold mb-4">Edit Person Details</h1>
+      <form onSubmit={handleSubmit} className="w-full max-w-lg bg-white p-6 rounded-lg shadow-md">
+      <div className=''>
+        <h1 className="text-2xl font-semibold mb-4 text-gray-700">Edit Person Details</h1>
       </div>
         {/* First Name */}
         <div className="mb-4">
-          <label htmlFor="firstname" className="block text-sm font-medium text-gray-200">
+          <label htmlFor="firstname" className="block text-sm font-medium text-gray-700">
             FirstName
           </label>
           <input
             type="text"
-            name="FirstName"
-            value={personData.FirstName}
+            name="firstName"
+            value={personData.firstName}
             onChange={handleInputChange}
             className="mt-1 p-2 rounded-md border border-gray-300 w-full"
             placeholder="Enter First Name"
@@ -97,13 +98,13 @@ const resetForm = () => {
 
         {/* Middle Name */}
         <div className="mb-4">
-          <label htmlFor="middlename" className="block text-sm font-medium text-gray-200">
+          <label htmlFor="middlename" className="block text-sm font-medium text-gray-700">
             MiddleName
           </label>
           <input
             type="text"
-            name="MiddleName"
-            value={personData.MiddleName}
+            name="middleName"
+            value={personData.middleName}
             onChange={handleInputChange}
             className="mt-1 p-2 rounded-md border border-gray-300 w-full"
             placeholder="Enter middlename"
@@ -111,13 +112,13 @@ const resetForm = () => {
         </div>
         {/* {last name} */}
         <div className="mb-4">
-          <label htmlFor="surname" className="block text-sm font-medium text-gray-200">
+          <label htmlFor="surname" className="block text-sm font-medium text-gray-700">
            SurName
           </label>
           <input
             type="text"
-            name="SurName"
-            value={personData.SurName}
+            name="surName"
+            value={personData.surName}
             onChange={handleInputChange}
             className="mt-1 p-2 rounded-md border border-gray-300 w-full"
             placeholder="Enter Surname"
@@ -125,12 +126,12 @@ const resetForm = () => {
         </div>
         {/* Gender ID */}
         <div className="mb-4">
-          <label htmlFor="genderid" className="block text-sm font-medium text-gray-200">
+          <label htmlFor="genderid" className="block text-sm font-medium text-gray-700">
             Gender
           </label>
           <select
-            name="GenderId"
-            value={personData.GenderId}
+            name="genderId"
+            value={personData.genderId}
             onChange={handleInputChange}
             className="mt-1 p-2 rounded-md border border-gray-300 w-full"
           >
@@ -142,12 +143,12 @@ const resetForm = () => {
 
         {/* Marital Status ID */}
         <div className="mb-4">
-          <label htmlFor="genderid" className="block text-sm font-medium text-gray-200">
+          <label htmlFor="genderid" className="block text-sm font-medium text-gray-700">
             Marital Status
           </label>
           <select
-            name="MaritalStatusId"
-            value={personData.MaritalStatusId}
+            name="maritalStatusId"
+            value={personData.maritalStatusId}
             onChange={handleInputChange}
             className="mt-1 p-2 rounded-md border border-gray-300 w-full"
           >
@@ -158,13 +159,13 @@ const resetForm = () => {
         </div>
          {/* {mobilenumber} */}
          <div className="mb-4">
-          <label htmlFor="PhoneNumber" className="block text-sm font-medium text-gray-200">
+          <label htmlFor="PhoneNumber" className="block text-sm font-medium text-gray-700">
             Mobile Number
           </label>
           <input
             type="text"
-            name="PhoneNumber"
-            value={personData.PhoneNumber}
+            name="phoneNumber"
+            value={personData.phoneNumber}
             onChange={handleInputChange}
             className="mt-1 p-2 rounded-md border border-gray-300 w-full"
             placeholder="Enter Mobile number"
@@ -172,13 +173,13 @@ const resetForm = () => {
           </div>
         {/* {email address} */}
         <div className="mb-4">
-          <label htmlFor="EmailAddress" className="block text-sm font-medium text-gray-200">
+          <label htmlFor="EmailAddress" className="block text-sm font-medium text-gray-700">
             Email Address
           </label>
           <input
             type="text"
-            name="EmailAddress"
-            value={personData.EmailAddress}
+            name="emailAddress"
+            value={personData.emailAddress}
             onChange={handleInputChange}
             className="mt-1 p-2 rounded-md border border-gray-300 w-full"
             placeholder="Enter email address"
@@ -186,12 +187,12 @@ const resetForm = () => {
         </div>
         {/* {document type} */}
         <div className="mb-4">
-          <label htmlFor="genderid" className="block text-sm font-medium text-gray-200">
+          <label htmlFor="genderid" className="block text-sm font-medium text-gray-700">
             Image
           </label>
           <select
-            name="Image"
-            value={personData.Image}
+            name="image"
+            value={personData.image}
             onChange={handleInputChange}
             className="mt-1 p-2 rounded-md border border-gray-300 w-full"
           >
@@ -203,13 +204,13 @@ const resetForm = () => {
          
         {/* {signature} */}
         <div className="mb-4">
-          <label htmlFor="mobilenumber" className="block text-sm font-medium text-gray-200">
+          <label htmlFor="mobilenumber" className="block text-sm font-medium text-gray-700">
             Signature
           </label>
           <input
             type="text"
-            name="Signature"
-            value={personData.Signature}
+            name="signature"
+            value={personData.signature}
             onChange={handleInputChange}
             className="mt-1 p-2 rounded-md border border-gray-300 w-full"
             placeholder="Enter signature"

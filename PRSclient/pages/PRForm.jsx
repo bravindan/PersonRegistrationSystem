@@ -57,13 +57,13 @@ const resetForm = () => {
   return (
     <div className="container mx-auto p-4 flex justify-center items-center">
      
-      <form onSubmit={handleSubmit} className="w-full max-w-lg">
+      <form onSubmit={handleSubmit} className="w-full max-w-lg bg-white p-6 rounded-lg shadow-md">
       <div>
-        <h1 className="text-2xl font-semibold mb-4">Register New Person</h1>
+        <h1 className="text-2xl font-semibold mb-4 text-gray-700">Register New Person</h1>
       </div>
         {/* First Name */}
         <div className="mb-4">
-          <label htmlFor="firstname" className="block text-sm font-medium text-gray-200">
+          <label htmlFor="firstname" className="block text-sm font-medium text-gray-700">
             FirstName
           </label>
           <input
@@ -78,7 +78,7 @@ const resetForm = () => {
 
         {/* Middle Name */}
         <div className="mb-4">
-          <label htmlFor="middlename" className="block text-sm font-medium text-gray-200">
+          <label htmlFor="middlename" className="block text-sm font-medium text-gray-700">
             MiddleName
           </label>
           <input
@@ -92,7 +92,7 @@ const resetForm = () => {
         </div>
         {/* {last name} */}
         <div className="mb-4">
-          <label htmlFor="surname" className="block text-sm font-medium text-gray-200">
+          <label htmlFor="surname" className="block text-sm font-medium text-gray-700">
            SurName
           </label>
           <input
@@ -106,7 +106,7 @@ const resetForm = () => {
         </div>
         {/* Gender ID */}
         <div className="mb-4">
-          <label htmlFor="genderid" className="block text-sm font-medium text-gray-200">
+          <label htmlFor="genderid" className="block text-sm font-medium text-gray-700">
             Gender
           </label>
           <select
@@ -123,7 +123,7 @@ const resetForm = () => {
 
         {/* Marital Status ID */}
         <div className="mb-4">
-          <label htmlFor="genderid" className="block text-sm font-medium text-gray-200">
+          <label htmlFor="genderid" className="block text-sm font-medium text-gray-700">
             Marital Status
           </label>
           <select
@@ -139,7 +139,7 @@ const resetForm = () => {
         </div>
          {/* {mobilenumber} */}
          <div className="mb-4">
-          <label htmlFor="PhoneNumber" className="block text-sm font-medium text-gray-200">
+          <label htmlFor="PhoneNumber" className="block text-sm font-medium text-gray-700">
             Mobile Number
           </label>
           <input
@@ -153,7 +153,7 @@ const resetForm = () => {
           </div>
         {/* {email address} */}
         <div className="mb-4">
-          <label htmlFor="EmailAddress" className="block text-sm font-medium text-gray-200">
+          <label htmlFor="EmailAddress" className="block text-sm font-medium text-gray-700">
             Email Address
           </label>
           <input
@@ -167,7 +167,7 @@ const resetForm = () => {
         </div>
         {/* {document type} */}
         <div className="mb-4">
-          <label htmlFor="genderid" className="block text-sm font-medium text-gray-200">
+          <label htmlFor="genderid" className="block text-sm font-medium text-gray-700">
             Image
           </label>
           <select
@@ -184,7 +184,7 @@ const resetForm = () => {
          
         {/* {signature} */}
         <div className="mb-4">
-          <label htmlFor="mobilenumber" className="block text-sm font-medium text-gray-200">
+          <label htmlFor="mobilenumber" className="block text-sm font-medium text-gray-700">
             Signature
           </label>
           <input

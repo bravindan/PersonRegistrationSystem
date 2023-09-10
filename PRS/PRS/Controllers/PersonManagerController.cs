@@ -104,5 +104,28 @@ namespace PRS.Controllers
                 return BadRequest(ex.ToString());
             }
         }
+        [HttpGet("people/{id}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> People(int id)
+        {
+            try
+            {
+                if (id == 0)
+                {
+                    return BadRequest();
+                }
+                var CheckUserExist = connector.PersonManager.Find(id);
+                if (CheckUserExist == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(CheckUserExist);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
     }
 }
