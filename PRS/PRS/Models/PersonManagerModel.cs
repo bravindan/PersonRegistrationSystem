@@ -1,5 +1,11 @@
 ﻿namespace PRS.Models
 {
+    public enum ApprovalStatus
+    {
+        Pending,
+        Approved,
+        Rejected
+    }
     public class PersonManagerModel
     {
         public int Id { get; set; } 
@@ -16,5 +22,6 @@
         public int CreatedById { get; set; }
         public DateTime CreatedOn { get; set; }
         public Boolean Approved { get; set; }
+        public ApprovalStatus ApprovalStatus { get; set; }
     }
 }

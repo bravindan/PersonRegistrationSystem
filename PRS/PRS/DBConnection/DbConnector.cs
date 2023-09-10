@@ -16,8 +16,11 @@ namespace PRS.DBConnection
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserModel>().Property(c => c.UserType)
-               .HasConversion<string>(); // Store enum as string in the database
-           
+               .HasConversion<string>();
+
+            modelBuilder.Entity<PersonManagerModel>().Property(c => c.ApprovalStatus)
+               .HasConversion<string>();// Store enum as string in the database
+
             base.OnModelCreating(modelBuilder);
         }
 

@@ -31,6 +31,15 @@ export default function CheckerDashboard(props) {
     const date = new Date(dateString);
     return date.toLocaleDateString(); 
   }
+  const resolveStatus = (status) => {
+    if(status ==0 ){
+      return "Pending"
+    }else if(status==1){
+      return "Approved"
+    }else if(status == 2){
+      return "Rejected"
+    }
+  }
 
   // handle approval
   const handleApproval = async (id)=>{
@@ -41,14 +50,21 @@ export default function CheckerDashboard(props) {
       }
       await axios.post(`https://localhost:7057/api/Person/approve`, personDTO );
       setApprovedId(id)
+      getData();
      
     }catch(error){
       console.log("failed to approve:", error)
     }
   }
 //handle rejection
-const handleRejection = (id)=>{
+const handleRejection = async (id)=>{
+  const personDTO = {
+    personId:id,
+    supervisedById: localStorage.getItem("userId")
+  }
+ await axios.post(`https://localhost:7057/api/Person/reject`, personDTO );
     setRejectedId(id)
+    getData()
 }
   return (
     <div className="p-3">
@@ -75,6 +91,7 @@ const handleRejection = (id)=>{
             <th className="p-2">CrudType</th>
             <th className="p-2">Created By ID</th>
             <th className="p-2">Created On</th>
+            {/* <th className="p-2">Status</th> */}
             <th className="p-2">Action</th>
           </tr>
         </thead>
@@ -98,10 +115,12 @@ const handleRejection = (id)=>{
                 <td className="p-2">{person.crudTypeId==53?"Add":"Edit"}</td>
                 <td className="p-2">{person.createdById}</td>
                 <td className="p-2">{formatDate(person.createdOn)}</td>
+                {/* <td className="p-2">{resolveStatus(person.approvalStatus)}</td> */}
+
               <td className="p-2">
                 <div className='flex justify-between'>
-                <button onClick={()=>handleApproval(person.id)} className={`${isApproved ? 'bg-green-500':'bg-blue-500'} text-white px-2 py-1 rounded hover:bg-green-600`}>{isApproved? "Approved":"Approve"}</button>
-                <button onClick={()=>handleRejection(person.id)} className={`${isRejected ? 'bg-red-500' : 'bg-black'} text-white px-2 py-1 rounded hover:bg-red-600 ml-2`}>{isRejected? "Rejected":"Reject"}</button>
+                <button onClick={()=>handleApproval(person.id)} className={`${person.approvalStatus ==1 ? 'bg-green-500':'bg-blue-500'} text-white px-2 py-1 rounded hover:bg-green-600`}>{person.approvalStatus ==1 ? "Approved":"Approve"}</button>
+                <button onClick={()=>handleRejection(person.id)} className={`${person.approvalStatus ==2 ? 'bg-red-500' : 'bg-black'} text-white px-2 py-1 rounded hover:bg-red-600 ml-2`}>{person.approvalStatus ==2 ? "Rejected":"Reject"}</button>
                 </div>
               </td>
             </tr>

@@ -71,10 +71,12 @@ namespace PRS.Controllers
                 Person.CreatedOn = DateTime.Now;
                 Person.SupervisedOn = DateTime.Now;
                 Person.SupervisedById = creatonDTO.SupervisedById;
+               
 
                 connector.Person.Add(Person);
 
                 User.Approved = true;
+                User.ApprovalStatus = ApprovalStatus.Approved;
                 connector.PersonManager.Update(User);
 
                 await connector.SaveChangesAsync();
