@@ -46,7 +46,7 @@ namespace PRS.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> UpdatePersonManager(int id, [FromBody] PersonManagerModel model)
         {
-            
+            model.CrudTypeId = 63;
             try
             {
                 if (id == 0)

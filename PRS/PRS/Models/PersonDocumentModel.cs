@@ -1,4 +1,5 @@
 ﻿namespace PRS.Models
+
 {
     public class PersonDocumentModel
     {
@@ -10,5 +11,6 @@
         public DateTime CreatedOn { get; set; }
         public int SupervisedById { get; set; }
         public DateTime SupervisedOn { get; set ; }
+        //public PersonManagerModel PersonManagerModel { get; set; }
     }
 }

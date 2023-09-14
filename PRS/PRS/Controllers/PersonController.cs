@@ -32,12 +32,40 @@ namespace PRS.Controllers
             return Ok(persons);
         }
 
-        [HttpPatch("updateperson")]
-        public async Task<PersonModel> UpdatePerson (PersonModel model)
+        [HttpPatch("updateperson/{id}")]
+        public async Task<IActionResult> UpdatePerson (int id,[FromBody] PersonModel model)
         {
-            connector.Person.Update(model);
-            await connector.SaveChangesAsync();
-            return model;
+            model.CrudTypeId = 63;
+            try
+            {
+                if (id == 0)
+                {
+                    return BadRequest();
+                }
+                var CheckUserExist = await connector.Person.FindAsync(id);
+                if (CheckUserExist == null)
+                {
+                    return NotFound();
+                }
+                CheckUserExist.FirstName = model.FirstName;
+                CheckUserExist.MiddleName = model.MiddleName;
+                CheckUserExist.SurName = model.SurName;
+                CheckUserExist.GenderId = model.GenderId;
+                CheckUserExist.MaritalStatusId = model.MaritalStatusId;
+                CheckUserExist.PhoneNumber = model.PhoneNumber;
+                CheckUserExist.EmailAddress = model.EmailAddress;
+                CheckUserExist.Image = model.Image;
+                CheckUserExist.Signature = model.Signature;
+                CheckUserExist.CrudTypeId = model.CrudTypeId;
+
+                //connector.Person.Update(model);
+                await connector.SaveChangesAsync();
+                return Ok(model);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString()); 
+            }
         }
 
         [HttpPost("approve")]
@@ -77,7 +105,7 @@ namespace PRS.Controllers
 
                 User.Approved = true;
                 User.ApprovalStatus = ApprovalStatus.Approved;
-                connector.PersonManager.Update(User);
+                connector.PersonManager.Remove(User);
 
                 await connector.SaveChangesAsync();
 
@@ -111,6 +139,29 @@ namespace PRS.Controllers
                 await connector.SaveChangesAsync();
 
                 return Ok(User);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
+        [HttpGet("{id}")]
+        [AllowAnonymous]
+        public IActionResult Person(int id)
+        {
+            try
+            {
+                if (id == 0)
+                {
+                    return BadRequest();
+                }
+                var CheckUserExist = connector.Person.Find(id);
+                if (CheckUserExist == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(CheckUserExist);
             }
             catch (Exception ex)
             {

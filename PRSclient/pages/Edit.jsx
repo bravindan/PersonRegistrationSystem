@@ -5,7 +5,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 export default function EditPerson() {
   const redirect =useNavigate();
     const {id} = useParams();
-    const [approvedData, setApprovedData] = useState();
+
   // Define state variables to store form input values
   const [personData, setPersonData] = useState({
     FirstName: '',
@@ -41,7 +41,7 @@ const resetForm = () => {
     const getData = async () => {
       console.log(id)
         try {
-          const response = await axios.get(`https://localhost:7057/api/PersonManager/people/${id}`);
+          const response = await axios.get(`https://localhost:7057/api/Person/${id}`);
           // const person = response.data; 
           setPersonData(response.data);
           console.log(personData)
@@ -52,22 +52,6 @@ const resetForm = () => {
     getData()
   }, [id])
 
-  //get person from personTable
-  // useEffect(()=>{
-  //   const getApprovedData = async () => {
-  //     console.log(id)
-  //       try {
-  //         const response = await axios.get(`https://localhost:7057/api/Person/people/${id}`);
-  //         // const person = response.data; 
-  //         setApprovedData(response.data);
-  //         console.log(approvedData)
-  //       } catch (error) {
-  //         console.error('Error fetching data:', error.message);
-  //       }
-  //   }
-  //   getData()
-  // }, [id])
-
   // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -77,31 +61,18 @@ const resetForm = () => {
     });
   };
 
-  // Handle form submission
-  const handleSubmitForMaker = async(e) => {
-    e.preventDefault();
-    console.log('Form Data:', personData);
-      try {
-      const result = await axios.patch(`https://localhost:7057/api/personmanager/${id}`, personData);
-      console.log(result.data);
-      resetForm();
-      redirect("/dashboard")
-    } catch (error) {
-      console.error('Error updating data:', error);
-    }
-
     // edit data in person table
-  //   const handleSubmitForChecker = async(e) => {
-  //     e.preventDefault();
-  //     console.log('Form Data:', personData);
-  //       try {
-  //       const result = await axios.patch(`https://localhost:7057/api/Person/updateperson/${id}`, personData);
-  //       console.log(result.data);
-  //       resetForm();
-  //       redirect("/dashboard")
-  //     } catch (error) {
-  //       console.error('Error updating data:', error);
-  //     }
+    const handleSubmitForChecker = async(e) => {
+      e.preventDefault();
+      console.log('Form Data:', personData);
+        try {
+        const result = await axios.patch(`https://localhost:7057/api/Person/updateperson/${id}`, personData);
+        console.log(result.data);
+        resetForm();
+        redirect("/dashboard")
+      } catch (error) {
+        console.error('Error updating data:', error);
+      }
 
   //
  };
@@ -109,7 +80,7 @@ const resetForm = () => {
   return (
     <div className="container mx-auto p-4 flex justify-center items-center">
      
-      <form onSubmit={handleSubmitForMaker} className="w-full max-w-lg bg-white p-6 rounded-lg shadow-md">
+      <form onSubmit={handleSubmitForChecker} className="w-full max-w-lg bg-white p-6 rounded-lg shadow-md">
       <div className=''>
         <h1 className="text-2xl font-semibold mb-4 text-gray-700">Edit Person Details</h1>
       </div>
