@@ -7,12 +7,11 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-const redirectToCheckerDash = () =>{
-    navigate('/checker')
+const redirectToDash = () =>{
+    navigate('/dashboard')
+    // navigate('/dash')
 }
-const redirectToMakerDash = () =>{
-    navigate('/maker')
-}
+
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -28,16 +27,20 @@ const redirectToMakerDash = () =>{
       //handle login 
       const handleSubmit = async(e) => {
         e.preventDefault();
-        setLoading(true);
-        
+       
         try{
             const res = await axios.post('https://localhost:7057/api/user/login', formData);
-            console.log(res.data);
             localStorage.setItem("userId", res.data.id);
-           {res.data.userType == 0? redirectToMakerDash():redirectToCheckerDash()}
-           setLoading(false);
+            localStorage.setItem("userName", res.data.userName);
+            localStorage.setItem("userType", res.data.userType);
+            
+           {res.data.userType ==0 || res.data.userType ==1? redirectToDash(res.data.name, res.data.userType):"Invalid User type"}
+           
         }catch(error){
-            console.log(error.message)
+          return(
+            alert("Invalid user type")
+          )
+            // console.log(error.message)
         }
       };
 

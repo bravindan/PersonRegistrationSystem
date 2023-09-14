@@ -2,6 +2,7 @@ import axios from 'axios';
 import React,{useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
+import CheckerDashboard from './CheckerDashboard';
 
 export default function MakerDashboard() {
   const[people,setPeople] = useState([]);
@@ -112,7 +113,7 @@ const formatDate = (dateString) => {
           }
         </tbody>
       </table>
-     
+     {<CheckerDashboard/>}
       </div>
       </>}
   </div>

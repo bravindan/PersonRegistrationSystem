@@ -26,6 +26,7 @@ namespace PRS.Controllers
             model.CrudTypeId = Convert.ToInt32(model.CrudTypeId);
             model.MaritalStatusId = Convert.ToInt32(model.MaritalStatusId);
             model.CrudTypeId = 53;
+            //model.CrudTypeId = 63;
             //    logger.LogInformation("Creating a person : {}", model);
             connector.PersonManager.Add(model);
             await connector.SaveChangesAsync();
@@ -45,6 +46,7 @@ namespace PRS.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> UpdatePersonManager(int id, [FromBody] PersonManagerModel model)
         {
+            
             try
             {
                 if (id == 0)
@@ -106,7 +108,7 @@ namespace PRS.Controllers
         }
         [HttpGet("people/{id}")]
         [AllowAnonymous]
-        public async Task<IActionResult> People(int id)
+        public IActionResult People(int id)
         {
             try
             {

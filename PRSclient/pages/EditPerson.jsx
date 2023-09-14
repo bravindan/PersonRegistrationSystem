@@ -67,7 +67,7 @@ const resetForm = () => {
       const result = await axios.patch(`https://localhost:7057/api/personmanager/${id}`, personData);
       console.log(result.data);
       resetForm();
-      redirect("/maker")
+      redirect("/dashboard")
     } catch (error) {
       console.error('Error updating data:', error);
     }

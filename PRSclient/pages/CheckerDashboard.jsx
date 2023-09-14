@@ -91,7 +91,7 @@ const handleRejection = async (id)=>{
             <th className="p-2">CrudType</th>
             <th className="p-2">Created By ID</th>
             <th className="p-2">Created On</th>
-            {/* <th className="p-2">Status</th> */}
+            <th className="p-2">Status</th>
             <th className="p-2">Action</th>
           </tr>
         </thead>
@@ -115,7 +115,7 @@ const handleRejection = async (id)=>{
                 <td className="p-2">{person.crudTypeId==53?"Add":"Edit"}</td>
                 <td className="p-2">{person.createdById}</td>
                 <td className="p-2">{formatDate(person.createdOn)}</td>
-                {/* <td className="p-2">{resolveStatus(person.approvalStatus)}</td> */}
+                <td className="p-2">{resolveStatus(person.approvalStatus)}</td>
 
               <td className="p-2">
                 <div className='flex justify-between'>

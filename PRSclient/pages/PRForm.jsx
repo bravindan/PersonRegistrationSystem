@@ -50,7 +50,7 @@ const resetForm = () => {
     var result = await axios.post('https://localhost:7057/api/personmanager/create', personData)
     console.log(result.data);
     resetForm()
-    redirect('/maker');
+    redirect('/dashboard');
 
   };
 

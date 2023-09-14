@@ -105,9 +105,8 @@ namespace PRS.Controllers
                 }
              
 
-                User.Approved = true;
-                User.ApprovalStatus = ApprovalStatus.Rejected;
-                connector.PersonManager.Update(User);
+               
+                connector.PersonManager.Remove(User);
 
                 await connector.SaveChangesAsync();
 
