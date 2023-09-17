@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PRS.DBConnection;
 using PRS.Models;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace PRS.Controllers
 {
@@ -11,25 +12,40 @@ namespace PRS.Controllers
     public class PersonManagerController : ControllerBase
     {
         private readonly DbConnector connector;
-        // private readonly ILogger<PersonManagerController> logger;
+      
         public PersonManagerController(DbConnector connector)
         {
             this.connector = connector;
-            //   this.logger = logger;   
+              
         }
+        //modified
+        //public PersonDocumentManagerModel GetPersonDocumentManagerModel(PersonDocumentManagerModel doc)
+        //{
+        //    return doc;
+        //}
+
         [HttpPost("create")]
         [AllowAnonymous]
-        public async Task<PersonManagerModel> PersonManager(PersonManagerModel model)
+        public async Task<PersonManagerModel> PersonManager(PersonManagerModel model /*, PersonDocumentManagerModel doc*/)
         {
             model.CreatedOn = DateTime.Now;
             model.GenderId = Convert.ToInt32(model.GenderId);
             model.CrudTypeId = Convert.ToInt32(model.CrudTypeId);
             model.MaritalStatusId = Convert.ToInt32(model.MaritalStatusId);
             model.CrudTypeId = 53;
-            //model.CrudTypeId = 63;
-            //    logger.LogInformation("Creating a person : {}", model);
+            
             connector.PersonManager.Add(model);
             await connector.SaveChangesAsync();
+           
+            //post to docuement manager table
+            //var DocData = new PersonDocumentManagerModel();
+            //DocData.CreatedOn = DateTime.Now;
+            //DocData.CrudTypeId = Convert.ToInt32(model.CrudTypeId);
+            //DocData.CrudTypeId = 53;
+            //DocData.DocumentNumber = doc.DocumentNumber;
+            //connector.PersonDocumentManager.Add(doc);
+            //await connector.SaveChangesAsync();
+
             return model;
         }
 

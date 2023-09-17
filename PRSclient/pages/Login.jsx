@@ -46,8 +46,12 @@ const redirectToDash = () =>{
 
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex flex-col justify-center items-center h-screen">
+      <div className='p-10'>
+        <p className='text-4xl underline'>PERSON REGISTRATION SYSTEM</p>
+      </div>
       <div className="bg-white p-6 rounded-lg shadow-md w-96">
+        
         <h1 className="text-2xl font-semibold mb-4 text-black">Login</h1>
         <div className='flex justify-center items center'>
           {loading? <div className='loader animate-ping border-4 border-t-4 border-gray-950 rounded-full  w-12 h-12 ease-linear'></div>:""}

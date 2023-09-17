@@ -9,8 +9,8 @@ namespace PRS.Models
         public int PersonId { get; set; }
         public int DocumentTypeId { get; set; }
         [StringLength(10)]
-        public string DocumentNumber { get; set; }
-        public int CrudTypeID { get; set; }
+        public string? DocumentNumber { get; set; }
+        public int CrudTypeId { get; set; }
         public int CreatedById { get; set; }
         public DateTime CreatedOn { get; set;}
     }

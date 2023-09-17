@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export default function PRForm() {
+  const [docData, setDocData] = useState({});
   const redirect =useNavigate();
   // Define state variables to store form input values
   const [personData, setPersonData] = useState({
@@ -13,7 +14,8 @@ export default function PRForm() {
     MaritalStatusId: '',
     PhoneNumber: '',
     EmailAddress: '',
-    Image: '',   
+    Image: '',
+    // DocumentNumber:'',   
     Signature: '',
     CreatedById:localStorage.getItem("userId")
   });
@@ -30,6 +32,7 @@ const resetForm = () => {
     PhoneNumber: '',
     EmailAddress: '',
     Image: '',
+    // DocumentNumber:'',
     Signature: '',
     CreatedById: localStorage.getItem("userId")
   });
@@ -49,7 +52,7 @@ const resetForm = () => {
     console.log('Form Data:', personData);
     var result = await axios.post('https://localhost:7057/api/personmanager/create', personData)
     console.log(result.data);
-    resetForm()
+    {result.status =="OK" && resetForm()} 
     redirect('/dashboard');
 
   };
@@ -181,6 +184,20 @@ const resetForm = () => {
             <option value="94">Passport</option>
           </select>
         </div>
+         {/* {Document number} */}
+         <div className="mb-4">
+          <label htmlFor="DocumentNumber" className="block text-sm font-medium text-gray-700">
+            Document Number
+          </label>
+          <input
+            type="number"
+            name="DocumentNumber"
+            value={personData.DocumentNumber}
+            onChange={handleInputChange}
+            className="mt-1 p-2 rounded-md border border-gray-300 w-full"
+            placeholder="Enter document number"
+          />
+          </div>
          
         {/* {signature} */}
         <div className="mb-4">
