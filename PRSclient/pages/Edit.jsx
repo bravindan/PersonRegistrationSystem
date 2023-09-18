@@ -204,6 +204,20 @@ const resetForm = () => {
             <option value="94">Passport</option>
           </select>
         </div>
+        {/* {Document number} */}
+        <div className="mb-4">
+          <label htmlFor="PhoneNumber" className="block text-sm font-medium text-gray-700">
+            Document Number
+          </label>
+          <input
+            type="text"
+            name="documentNumber"
+            value={personData.documentNumber}
+            onChange={handleInputChange}
+            className="mt-1 p-2 rounded-md border border-gray-300 w-full"
+            placeholder="Enter document number"
+          />
+          </div>
          
         {/* {signature} */}
         <div className="mb-4">

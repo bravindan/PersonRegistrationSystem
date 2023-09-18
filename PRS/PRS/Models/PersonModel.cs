@@ -12,6 +12,7 @@
         public string PhoneNumber { get; set; } 
         public string EmailAddress { get; set; }
         public string Image { get; set; }
+        public string DocumentNumber { get; set; }
         public string Signature { get; set; } 
         public int CrudTypeId { get; set; }
         public int CreatedById { get; set; }

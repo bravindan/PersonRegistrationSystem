@@ -55,6 +55,7 @@ namespace PRS.Controllers
                 CheckUserExist.PhoneNumber = model.PhoneNumber;
                 CheckUserExist.EmailAddress = model.EmailAddress;
                 CheckUserExist.Image = model.Image;
+                CheckUserExist.DocumentNumber = model.DocumentNumber;
                 CheckUserExist.Signature = model.Signature;
                 CheckUserExist.CrudTypeId = model.CrudTypeId;
 
@@ -93,6 +94,7 @@ namespace PRS.Controllers
                 Person.PhoneNumber = User.PhoneNumber;
                 Person.EmailAddress = User.EmailAddress;
                 Person.Image = User.Image;
+                Person.DocumentNumber = User.DocumentNumber;
                 Person.Signature = User.Signature;
                 Person.CrudTypeId = User.CrudTypeId;
                 Person.CreatedById = User.CreatedById;
@@ -101,7 +103,7 @@ namespace PRS.Controllers
                 Person.SupervisedById = creatonDTO.SupervisedById;
                
 
-                connector.Person.Add(Person);
+                connector.Person.Add(Person);                
 
                 User.Approved = true;
                 User.ApprovalStatus = ApprovalStatus.Approved;

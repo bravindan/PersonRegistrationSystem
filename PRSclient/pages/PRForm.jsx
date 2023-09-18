@@ -15,7 +15,7 @@ export default function PRForm() {
     PhoneNumber: '',
     EmailAddress: '',
     Image: '',
-    // DocumentNumber:'',   
+    DocumentNumber:'',   
     Signature: '',
     CreatedById:localStorage.getItem("userId")
   });
@@ -32,7 +32,7 @@ const resetForm = () => {
     PhoneNumber: '',
     EmailAddress: '',
     Image: '',
-    // DocumentNumber:'',
+    DocumentNumber:'',
     Signature: '',
     CreatedById: localStorage.getItem("userId")
   });
@@ -190,7 +190,7 @@ const resetForm = () => {
             Document Number
           </label>
           <input
-            type="number"
+            type="text"
             name="DocumentNumber"
             value={personData.DocumentNumber}
             onChange={handleInputChange}

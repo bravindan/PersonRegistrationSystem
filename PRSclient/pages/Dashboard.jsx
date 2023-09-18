@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../components/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faTrash, faPlus, faSignOut, faUserAlt, faUserEdit } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTrash, faPlus, faSignOut, faUserAlt, faUserEdit, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 export default function Dashboard() {
   const [people, setPeople] = useState([]);
@@ -122,7 +122,7 @@ export default function Dashboard() {
       ) : (
         <>
         <div className=''>
-        <p className='text-xl underline text-center'>PERSON REGISTRATION SYSTEM</p>
+        <p className='text-xl underline text-center'>PRS DASHBOARD</p>
       </div>
           <div className="flex justify-between mb-4">
             <h1 className="text-2xl font-semibold mb-4">New Person Data</h1>
@@ -171,6 +171,7 @@ export default function Dashboard() {
                   <th className="p-2">Mobile Number</th>
                   <th className="p-2">Email Address</th>
                   <th className="p-2">Image</th>
+                  <th className="p-2">Doc No.</th>
                   <th className="p-2">Signature</th>
                   <th className="p-2">CrudType</th>
                   <th className="p-2">CreatedBy</th>
@@ -194,7 +195,7 @@ export default function Dashboard() {
                     <tr
                       key={person.id}
                       className={
-                        person.id % 2 === 0
+                        index % 2 === 0
                           ? "bg-gray-100 text-gray-700"
                           : "bg-white text-gray-700"
                       }
@@ -214,6 +215,9 @@ export default function Dashboard() {
                       <td className="p-2">{person.emailAddress}</td>
                       <td className="p-2">
                         {person.image == 94 ? "Passport" : "National ID"}
+                      </td>
+                      <td className="p-2">
+                        {person.documentNumber}
                       </td>
                       <td className="p-2">{person.signature}</td>
                       <td className="p-2">
@@ -244,7 +248,8 @@ export default function Dashboard() {
                                   onClick={() => handleApproval(person.id)}
                                   className=" text-white px-2 py-1 rounded bg-green-600"
                                 >
-                                  Approve
+                                  <FontAwesomeIcon icon={faCheck}/>
+                                  {/* Approve */}
                                 </button>
                               )}
                               {person.approvalStatus == 0 && (
@@ -252,7 +257,8 @@ export default function Dashboard() {
                                   onClick={() => handleRejection(person.id)}
                                   className="text-white px-2 py-1 rounded bg-red-600 ml-2"
                                 >
-                                  Reject
+                                  <FontAwesomeIcon icon={faTimes}/>
+                                  {/* Reject */}
                                 </button>
                               )}
                             </div>
@@ -313,6 +319,7 @@ export default function Dashboard() {
                   <th className="p-2">Mobile Number</th>
                   <th className="p-2">Email Address</th>
                   <th className="p-2">Image</th>
+                  <th className="">Doc No.</th>
                   <th className="p-2">Signature</th>
                   {/* <th className="p-2">CrudType</th> */}
                   <th className="p-2">CreatedBy</th>
@@ -348,6 +355,9 @@ export default function Dashboard() {
                     <td className="p-2">{person.emailAddress}</td>
                     <td className="p-2">
                       {person.image == 94 ? "Passport" : "National ID"}
+                    </td>
+                    <td className="p-2">
+                      {person.documentNumber}
                     </td>
                     <td className="p-2">{person.signature}</td>
                     {/* <td className="p-2">{person.crudTypeId == 53 ? "Add" : "Edit"}</td> */}

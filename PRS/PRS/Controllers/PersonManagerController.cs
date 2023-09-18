@@ -82,6 +82,7 @@ namespace PRS.Controllers
                 CheckUserExist.PhoneNumber = model.PhoneNumber;
                 CheckUserExist.EmailAddress = model.EmailAddress;
                 CheckUserExist.Image =  model.Image;
+                CheckUserExist.DocumentNumber = model.DocumentNumber;
                 CheckUserExist.Signature = model.Signature;
                 CheckUserExist.CrudTypeId = model.CrudTypeId;
                 //CheckUserExist.CreatedOn = model.CreatedOn;

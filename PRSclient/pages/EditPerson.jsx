@@ -16,6 +16,7 @@ export default function EditPerson() {
     PhoneNumber: '',
     EmailAddress: '',
     Image: '',   
+    DocumentNumber:'',
     Signature: '',
     CreatedById:localStorage.getItem("userId")
   });
@@ -32,6 +33,7 @@ const resetForm = () => {
       PhoneNumber: '',
       EmailAddress: '',
       Image: '',
+      DocumentNumber:'',
       Signature: '',
       CreatedById: localStorage.getItem("userId")
     });
@@ -51,22 +53,6 @@ const resetForm = () => {
     }
     getData()
   }, [id])
-
-  //get person from personTable
-  // useEffect(()=>{
-  //   const getApprovedData = async () => {
-  //     console.log(id)
-  //       try {
-  //         const response = await axios.get(`https://localhost:7057/api/Person/people/${id}`);
-  //         // const person = response.data; 
-  //         setApprovedData(response.data);
-  //         console.log(approvedData)
-  //       } catch (error) {
-  //         console.error('Error fetching data:', error.message);
-  //       }
-  //   }
-  //   getData()
-  // }, [id])
 
   // Handle form input changes
   const handleInputChange = (e) => {
@@ -90,20 +76,6 @@ const resetForm = () => {
       console.error('Error updating data:', error);
     }
 
-    // edit data in person table
-  //   const handleSubmitForChecker = async(e) => {
-  //     e.preventDefault();
-  //     console.log('Form Data:', personData);
-  //       try {
-  //       const result = await axios.patch(`https://localhost:7057/api/Person/updateperson/${id}`, personData);
-  //       console.log(result.data);
-  //       resetForm();
-  //       redirect("/dashboard")
-  //     } catch (error) {
-  //       console.error('Error updating data:', error);
-  //     }
-
-  //
  };
 
   return (
@@ -235,19 +207,19 @@ const resetForm = () => {
         </div>
         
         {/* {Document number} */}
-        {/* <div className="mb-4">
+        <div className="mb-4">
           <label htmlFor="PhoneNumber" className="block text-sm font-medium text-gray-700">
             Document Number
           </label>
           <input
-            type="number"
-            name="DocumentNumber"
+            type="text"
+            name="documentNumber"
             value={personData.documentNumber}
             onChange={handleInputChange}
             className="mt-1 p-2 rounded-md border border-gray-300 w-full"
             placeholder="Enter document number"
           />
-          </div> */}
+          </div>
          
         {/* {signature} */}
         <div className="mb-4">
